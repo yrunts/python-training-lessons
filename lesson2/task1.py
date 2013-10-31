@@ -3,8 +3,8 @@
 def factorial(n):
     """Calculates and prints number's factorial.
 
-        :Parameters:
-            - `n`: an `int` number to calculate factorial for.
+    :Parameters:
+        - `n`: an `int` number to calculate factorial for;
     """
     result = 1
     if n != 0:
@@ -18,8 +18,8 @@ def factorial(n):
 def my_args(*args):
     """Prints function arguments.
 
-        :Parameters:
-            - `args`: arguments to print.
+    :Parameters:
+        - `args`: arguments to print;
     """
     print 'My args are %s' % (', '.join([str(a) for a in args]))
 
@@ -27,8 +27,8 @@ def my_args(*args):
 def harmony(*args):
     """Calculates and prints numbers harmonic medium value.
 
-        :Parameters:
-            - `args`: float numbers to calculate harmonic medium value.
+    :Parameters:
+        - `args`: float numbers to calculate harmonic medium value;
     """
     sum = 0
     for n in args:
