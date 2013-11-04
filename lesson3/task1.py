@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Solution to task 1 from lesson 3."""
 
 
@@ -130,6 +131,15 @@ def slicing(s):
     return s[:10] + s[-10:] if len(s) > 10 else s
 
 
+def to_ascii(s):
+    """Returns string encoded to US-ASCII character set.
+
+    :IVariables:
+        - `s`: an `string`;
+    """
+    return s.encode('ascii', 'ignore')
+
+
 def main():
     test()
     draw_cat()
@@ -146,7 +156,9 @@ def main():
     print upper_vowel('sadfgsa dg345 dfg d')
     print slicing('1234567890qwertyuiopasdfghjkl')
     print slicing('123')
-
+    print to_ascii(u'1234')
+    print to_ascii(u'\xea\x80\x80abcd\xde\xb4')
+    print to_ascii(u'Ʃasd')
 
 
 if __name__ == '__main__':
