@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
 """Solution to task 1 from lesson 3."""
 
 
@@ -39,7 +39,7 @@ _-_-_-_-_-_-_
     print r'_-_-_-_-_-_-_'
     print r'\           /'
     print r'|  ^_____^  |'
-    print r'/  (.) (.)  \\'
+    print '/  (.) (.)  \\'
     print r'|  ( t   )  |  Miaowww'
     print r'\    ==/    /'
     print r'|           |'
