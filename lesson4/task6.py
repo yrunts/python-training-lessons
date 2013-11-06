@@ -31,6 +31,16 @@ def main():
         os.remove(copy)
 
 
+def main2():
+    file_name = sys.argv[1] if len(sys.argv) > 1 else ''
+    if file_name:
+        try:
+            f = open(file_name, 'r+')
+            f.write('{:50s}'.format(str(datetime.datetime.now())))
+        except Exception, e:
+            raise e
+
+
 if __name__ == '__main__':
-    main()
+    main2()
 
