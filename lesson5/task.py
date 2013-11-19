@@ -206,6 +206,7 @@ def _copy(source, destination):
 def main():
     """Script entry point."""
     remove_empty_lines_iter('alice.txt', 'alice01.txt')
+    # remove blank lines
     replace('alice.txt', 'alice02.txt', r'^ +$', '')
     remove_white_spaces('alice.txt', 'alice03.txt')
 
