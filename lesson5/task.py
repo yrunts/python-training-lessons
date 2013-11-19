@@ -194,11 +194,8 @@ def _copy(source, destination):
     """Copy file with new name.
 
     :Parameters:
-        - `f`: a `file` to copy;
+        - `f`: a `string` file to copy name;
         - new_name: a `string` copy file name;
-
-    :Returns:
-        - `file` file copy with new name;
     """
     shutil.copyfile(source, destination)
 
