@@ -17,7 +17,7 @@ def remove_empty_lines(source, destination):
     content, count = re.subn(regexp, '', f.read())
     f.close()
     f = open(destination, 'w')
-    print '%s\n' % str(count)
+    print count
     f.write(content)
     f.close()
 
@@ -40,7 +40,7 @@ def remove_empty_lines_iter(source, destination):
         else:
             destination_file.write(l)
 
-    print '%s' % str(count)
+    print count
     source_file.close()
     destination_file.close()
 
@@ -66,7 +66,7 @@ def replace(source, destination, match_pattern, new_value):
         else:
             destination_file.write(l)
 
-    print '%s' % str(count)
+    print count
     source_file.close()
     destination_file.close()
 
@@ -90,7 +90,7 @@ def remove_white_spaces(source, destination):
                 count += 1
         destination_file.write(l)
 
-    print '%s' % str(count)
+    print str(count)
     source_file.close()
     destination_file.close()
 
