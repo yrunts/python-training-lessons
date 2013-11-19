@@ -214,14 +214,14 @@ def main():
     numbers_regexp = re.compile(r'\b\d+\b')
     print 'Numbers count: %s' % get_match_count('alice.txt', numbers_regexp)
 
-    doubles_regexp = re.compile(r'([a-z])\1+', re.I)
+    doubles_regexp = re.compile(r'([a-z])\1', re.I)
     print 'Number of doubles: %s' % get_match_count('alice.txt',
                                                      doubles_regexp)
 
     print 'Numbers of doubles without tripples: %s' % advanced_double(
             'alice.txt')
 
-    sentences_regexp = re.compile(r'\.{1,3}')
+    sentences_regexp = re.compile(r'[^\.](\.?)\.\1[^\.]')
     print 'Number of sentences: %s' % get_match_count('alice.txt',
                                                        sentences_regexp)
 
