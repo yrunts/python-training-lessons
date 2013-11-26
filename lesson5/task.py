@@ -1,4 +1,4 @@
-"""Solution to task 6 from lesson 4."""
+"""Solution to tasks from lesson 5."""
 
 import shutil
 import re

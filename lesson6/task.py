@@ -1,4 +1,4 @@
-"""Solution to tasks from lesson 5."""
+"""Solution to tasks from lesson 6."""
 
 
 import timeit
