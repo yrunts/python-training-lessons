@@ -83,7 +83,7 @@ def flatten(*args):
 
 
 def consumer(text=None):
-    """Returns generator that prints consumed text.
+    """Returns generator that consumes and prints text.
 
     :Parameters:
         - `text': a `string` text to print;
@@ -98,7 +98,7 @@ def consumer(text=None):
 
 
 def tail(filename, n=10):
-    """Returns n lines of a file in from end to begining
+    """Prints n lines of a file from end to begining.
 
     :Parameters:
         - `filename': a `string` path to a file;
