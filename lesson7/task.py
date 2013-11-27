@@ -53,11 +53,13 @@ def super_func(a, b, c):
     :Returns:
         - `generator`;
     """
-    b_prev = b - a
-    c_gen = itertools.cycle(itertools.chain(range(a, c + 1), range(c - 1, a, -1)))
-    while True:
-        yield a, a + b_prev, c_gen.next()
-        b_prev += a
+    a_gen = itertools.repeat(a)
+    b_gen = itertools.count(b, a)
+    c_values = list(itertools.chain.from_iterable(
+        itertools.repeat(range(a, c+1) + range(c-1, a, -1), b)))
+    c_values.append(a)
+    c_gen = itertools.chain.from_iterable(c_values)
+    return itertools.izip(a_gen, b_gen, c_values)
 
 
 def flatten(*args):
@@ -80,28 +82,57 @@ def flatten(*args):
             nexts = itertools.cycle(itertools.islice(nexts, pending))
 
 
-def consumer(interable):
-    """Returns generator for interable input.
+def consumer(text=None):
+    """Returns generator that prints consumed text.
 
     :Parameters:
-        - `interable': an `interable`;
+        - `text': a `string` text to print;
 
     :Returns:
         - `generator`;
     """
     while True:
-        yield interable.next()
+        if text:
+            print text
+        text = yield text
 
 
 def tail(filename, n=10):
-    """Returns n lines of a file in reversed order
+    """Returns n lines of a file in from end to begining
 
     :Parameters:
-        - `filename': an `interable`;
+        - `filename': a `string` path to a file;
         - 'n' - an `int` lines count;
     """
-    print ''.join(open(filename).readlines()[:-n:-1])
+    f = open(filename)
+    print '\n'.join(list(itertools.islice(tail_generator(f), n)))
+    f.close()
 
+
+def tail_generator(f):
+    """Returns generator reading file lines from end to start.
+
+    :Parameters:
+        - `f': a `file`;
+
+    :Returns:
+        - `generator`;
+    """
+    f.seek(0, 2)
+    blocksize = 1024
+    ending = ''
+    while f.tell() != 0:
+        try:
+            f.seek(-blocksize, 1)
+        except IOError:
+            blocksize = f.tell()
+            f.seek(-blocksize, 1)
+        block = f.read(blocksize) + ending
+        f.seek(-blocksize, 1)
+        lines = block.split('\n')
+        ending = lines.pop(0)
+        while lines:
+            yield lines.pop(-1)
 
 
 def main():
@@ -116,16 +147,16 @@ def main():
     print list(itertools.islice(gen, 0, 100))
     print list(itertools.islice(gen, 0, 1000, 10))
 
-    gen = super_func(1, 2, 3)
-    print list(itertools.islice(gen, 0, 10))
+    print list(super_func(1, 2, 3))
 
     gen = flatten('ABC', 'DEF', 'GHJKLMN')
     print list(gen)
 
-    gen = consumer(open('alice.txt'))
-    gen2 = consumer(open('alice.txt'))
-    for l in flatten(itertools.islice(gen, 0, 10), itertools.islice(gen2, 0, 10)):
-        print l
+    c = consumer()
+    c.next()
+    for line in flatten(itertools.islice(open('alice.txt'), 10),
+                        itertools.islice(open('alice.txt'), 10)):
+        c.send(line)
 
     tail('alice.txt', 10)
 
