@@ -9,6 +9,7 @@ from functools import wraps, partial
 t_count = 0
 
 def transaction_manager(func):
+    """Decorator """
     @wraps(func)
     def wrapper(*args, **kwargs):
         global t_count
@@ -25,20 +26,24 @@ def transaction_manager(func):
 
 @transaction_manager
 def example1():
+    """Test function for transaction_manager."""
     print 'example 1'
 
 
 @transaction_manager
 def example2():
+    """Test function for transaction_manager."""
     raise Exception()
 
 
 @transaction_manager
 def example3(text):
+    """Test function for transaction_manager."""
     print text
 
 
 def print_decorator(text):
+    """Decorator prints input text after function call."""
     def decorator(func):
         def wrapper(*args, **kwargs):
             func(*args, **kwargs)
@@ -49,11 +54,13 @@ def print_decorator(text):
 
 @print_decorator('World')
 def example4(arg):
+    """Test function for print_decorator decorator."""
     print arg
 
 
 @contextlib.contextmanager
 def transaction(status):
+    """Transaction implementation using contextmanager decorator."""
     global t_count
     t_count += 1
     count = t_count
@@ -67,6 +74,7 @@ def transaction(status):
 
 
 def my_func(a, b, c):
+    """Test function using transaction function."""
     with transaction('root'):
         print a
         with transaction('nested successful'):
