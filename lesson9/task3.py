@@ -16,7 +16,7 @@ def alarm_handler(signum, frame):
 
 
 def exit_handler(signum, frame):
-    sys.stdout.write('\nUser input cancelled')
+    sys.stdout.write('.')
     sys.exit(1)
 
 

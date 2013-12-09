@@ -40,7 +40,7 @@ def exit_handler():
 def terminate_handler(signum, frame):
     """Signals handler to perform exit."""
     signal_handler(signum, frame)
-    sys.exit(1)
+    sys.exit(0)
 
 
 def reset_handler(signum, frame):
