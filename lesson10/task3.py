@@ -22,7 +22,6 @@ class Memento(object):
         setattr(self.obj, self.attr, self.old_val)
 
 
-
 @contextlib.contextmanager
 def memento(obj, attr, val):
     """Memento as function with implementation."""
